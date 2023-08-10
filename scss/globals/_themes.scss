@@ -1,5 +1,5 @@
 $themes:(
-    "first":(
+    "dark":(
         bg: hsl(222, 26%, 31%),
         bg-screen: hsl(224, 36%, 15%),
         bg-keypad: hsl(223, 31%, 20%),
@@ -10,9 +10,9 @@ $themes:(
         numberkeys-bg: hsl(30, 25%, 89%),
         numberkeys-shadow: hsl(28, 16%, 65%),
         text-first: hsl(221, 14%, 31%),
-        text-second: hsl(0, 0%, 100%),
+        text-white: hsl(0, 0%, 100%),
     ),
-    "second":(
+    "light":(
         bg: hsl(0, 0%, 90%),
         bg-screen: hsl(0, 5%, 81%),
         bg-keypad: hsl(0, 0%, 93%),
@@ -23,9 +23,9 @@ $themes:(
         numberkeys-bg: hsl(45, 7%, 89%),
         numberkeys-shadow: hsl(35, 11%, 61%),
         text-first: hsl(60, 10%, 19%),
-        text-second: hsl(0, 0%, 100%),
+        text-white: hsl(0, 0%, 100%),
     ),
-    "third":(
+    "other":(
         bg: hsl(268, 75%, 9%),
         bg-screen: hsl(268, 71%, 12%),
         bg-keypad: hsl(268, 71%, 12%),
@@ -37,7 +37,7 @@ $themes:(
         numberkeys-shadow: hsl(290, 70%, 36%),
         text-first: hsl(52, 100%, 62%),
         text-second: hsl(198, 20%, 13%),
-        text-third: hsl(0, 0%, 100%),
+        text-white: hsl(0, 0%, 100%),
     ),
 );
 

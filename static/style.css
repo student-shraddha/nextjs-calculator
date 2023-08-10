@@ -24,6 +24,15 @@ main {
   min-height: 100vh;
   min-width: 100vw;
 }
+.theme--dark main {
+  background-color: hsl(222, 26%, 31%);
+}
+.theme--light main {
+  background-color: hsl(0, 0%, 90%);
+}
+.theme--other main {
+  background-color: hsl(268, 75%, 9%);
+}
 
 .flex {
   display: flex;

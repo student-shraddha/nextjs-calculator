@@ -20,6 +20,10 @@ body{
 main{
     min-height: 100vh;
     min-width: 100vw;
+
+    @include themed(){
+        background-color: t("bg");
+    }
 }
 
 .flex{
