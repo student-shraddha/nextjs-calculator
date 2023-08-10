@@ -49,3 +49,138 @@ main{
         flex-direction: column-reverse;
     }
 }
+
+header{
+    height: 80px;
+    width: 540px;
+
+    p{
+        @include themed(){
+            color: t("text-upper");
+        }
+    }
+
+    .toggle{
+        height: fit-content;
+
+        &-text{
+            padding-right: 25px;
+            font-size: 0.4em;
+        }
+
+        &-numbers{
+            display: flex;
+            justify-content: space-between;
+            width: 70px;
+            padding-bottom: 5px;
+            align-self: end;
+            
+            button{
+                border: none;
+                background: transparent;
+                font-size: 0.45em;
+                font-weight: 700;
+                cursor: pointer;
+                
+                @include themed(){
+                    color: t("text-upper");
+                }
+
+                &:first-child{
+                    margin-left: 5px;
+                }
+                &:last-child{
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        &-text-bar{
+            display: flex;
+            align-items: center;
+        }
+
+        &-bar{
+            height: 25px;
+            width: 70px;
+            border-radius: 15px;
+            padding: 4px;
+
+            @include themed(){
+                background-color: t("bg-keypad");
+            }
+
+            button{
+                height: 18px;
+                width: 18px;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+    
+                @include themed(){
+                    background-color: t("toggle-bg");
+                }
+            }
+
+            &-hidden{
+                background-color: transparent !important;
+            }
+        }
+    }
+}
+
+.screen{
+    height: 130px;
+    width: 540px;
+    border-radius: 10px;
+
+    @include themed(){
+        background-color: t("bg-screen");
+    }
+
+    margin-bottom: 25px;
+}
+
+.keypad{
+    height: 480px;
+    width: 540px;
+    border-radius: 10px;
+    padding: 30px;
+
+    @include themed(){
+        background-color: t("bg-keypad");
+    }
+}
+
+.keys{
+    height: 65px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+
+    &-numbers{
+        font-size: 1.2em;
+        font-weight: 700;
+
+        @include themed(){
+            background-color: t("numberkeys-bg");
+            color: t("text-first");
+            box-shadow: inset 0 -5px t("numberkeys-shadow");
+        }
+
+        &:active{
+            @include themed(){
+                background-color: color-mix(in hsl, t("numberkeys-bg") 85%, lightgreen);
+                box-shadow: inset 0 -3px t("numberkeys-shadow");
+            }   
+        }
+    }
+}
+
+@media screen and (max-width: 609px){
+
+}
+
+@media screen and (min-width: 610px){
+    
+}

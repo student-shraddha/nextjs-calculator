@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap");
-body {
+main {
   font-family: "League Spartan", sans-serif;
   font-size: 32px;
+  font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -51,4 +57,163 @@ main {
 }
 .flex-dir-col-rev {
   flex-direction: column-reverse;
+}
+
+header {
+  height: 80px;
+  width: 540px;
+}
+.theme--dark header p {
+  color: hsl(0, 0%, 100%);
+}
+.theme--light header p {
+  color: hsl(60, 10%, 19%);
+}
+.theme--other header p {
+  color: hsl(52, 100%, 62%);
+}
+header .toggle {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+header .toggle-text {
+  padding-right: 25px;
+  font-size: 0.4em;
+}
+header .toggle-numbers {
+  display: flex;
+  justify-content: space-between;
+  width: 70px;
+  padding-bottom: 5px;
+  align-self: end;
+}
+header .toggle-numbers button {
+  border: none;
+  background: transparent;
+  font-size: 0.45em;
+  font-weight: 700;
+  cursor: pointer;
+}
+.theme--dark header .toggle-numbers button {
+  color: hsl(0, 0%, 100%);
+}
+.theme--light header .toggle-numbers button {
+  color: hsl(60, 10%, 19%);
+}
+.theme--other header .toggle-numbers button {
+  color: hsl(52, 100%, 62%);
+}
+header .toggle-numbers button:first-child {
+  margin-left: 5px;
+}
+header .toggle-numbers button:last-child {
+  margin-right: 5px;
+}
+header .toggle-text-bar {
+  display: flex;
+  align-items: center;
+}
+header .toggle-bar {
+  height: 25px;
+  width: 70px;
+  border-radius: 15px;
+  padding: 4px;
+}
+.theme--dark header .toggle-bar {
+  background-color: hsl(223, 31%, 20%);
+}
+.theme--light header .toggle-bar {
+  background-color: hsl(0, 0%, 93%);
+}
+.theme--other header .toggle-bar {
+  background-color: hsl(268, 71%, 12%);
+}
+header .toggle-bar button {
+  height: 18px;
+  width: 18px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.theme--dark header .toggle-bar button {
+  background-color: hsl(6, 63%, 50%);
+}
+.theme--light header .toggle-bar button {
+  background-color: hsl(25, 98%, 40%);
+}
+.theme--other header .toggle-bar button {
+  background-color: hsl(176, 100%, 44%);
+}
+header .toggle-bar-hidden {
+  background-color: transparent !important;
+}
+
+.screen {
+  height: 130px;
+  width: 540px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+.theme--dark .screen {
+  background-color: hsl(224, 36%, 15%);
+}
+.theme--light .screen {
+  background-color: hsl(0, 5%, 81%);
+}
+.theme--other .screen {
+  background-color: hsl(268, 71%, 12%);
+}
+
+.keypad {
+  height: 480px;
+  width: 540px;
+  border-radius: 10px;
+  padding: 30px;
+}
+.theme--dark .keypad {
+  background-color: hsl(223, 31%, 20%);
+}
+.theme--light .keypad {
+  background-color: hsl(0, 0%, 93%);
+}
+.theme--other .keypad {
+  background-color: hsl(268, 71%, 12%);
+}
+
+.keys {
+  height: 65px;
+  width: 100px;
+  border: none;
+  border-radius: 10px;
+}
+.keys-numbers {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.theme--dark .keys-numbers {
+  background-color: hsl(30, 25%, 89%);
+  color: hsl(221, 14%, 31%);
+  box-shadow: inset 0 -5px hsl(28, 16%, 65%);
+}
+.theme--light .keys-numbers {
+  background-color: hsl(45, 7%, 89%);
+  color: hsl(60, 10%, 19%);
+  box-shadow: inset 0 -5px hsl(35, 11%, 61%);
+}
+.theme--other .keys-numbers {
+  background-color: hsl(268, 47%, 21%);
+  color: hsl(52, 100%, 62%);
+  box-shadow: inset 0 -5px hsl(290, 70%, 36%);
+}
+.theme--dark .keys-numbers:active {
+  background-color: color-mix(in hsl, hsl(30, 25%, 89%) 85%, lightgreen);
+  box-shadow: inset 0 -3px hsl(28, 16%, 65%);
+}
+.theme--light .keys-numbers:active {
+  background-color: color-mix(in hsl, hsl(45, 7%, 89%) 85%, lightgreen);
+  box-shadow: inset 0 -3px hsl(35, 11%, 61%);
+}
+.theme--other .keys-numbers:active {
+  background-color: color-mix(in hsl, hsl(268, 47%, 21%) 85%, lightgreen);
+  box-shadow: inset 0 -3px hsl(290, 70%, 36%);
 }/*# sourceMappingURL=style.css.map */

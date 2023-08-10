@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
 
-body{
+main{
     font-family: 'League Spartan', sans-serif;
     font-size: 32px;
+    font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+    padding: 0;
 }
