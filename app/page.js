@@ -69,7 +69,7 @@ export default function Home() {
 
   function equalsTo(){
     mathsOperations(operation, tempResult, Number(screen));
-    // setScreen("" + result);
+    setOperation("");
     setToBe(false);
   }
 
