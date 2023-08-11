@@ -10,14 +10,32 @@ export default function Home() {
   const[operation, setOperation] = useState("");
   const[tempResult, setTempResult] = useState(0);
   const[result, setResult] = useState(0);
+  const[toBe, setToBe] = useState(true);
 
+  function mathsOperations(operator, x, y){
+    if (operator == "+"){
+      setResult(x + y);
+    }
+    if (operator == "-"){
+      setResult(x - y);
+    }
+    if (operator == "x"){
+      setResult(x * y);
+    }
+    if (operator == "/"){
+      setResult(x / y);
+    }
+  }
+  
   function putNumbers(props){
-    if (operation != ""){
-      setScreen("");
-      setOperation("");
+    if (!toBe){
+      setTempResult(Number(screen));
+      setScreen("" + props);
+      setToBe(true);
+    }
+    else{
       setScreen(screen.concat(props));
     }
-    setScreen(screen.concat(props));
   }
 
   function removeNumber(){
@@ -25,7 +43,14 @@ export default function Home() {
   }
 
   function defineOperation(props){
+    setTempResult(Number(screen));
+
+    if (operation != ""){
+      mathsOperations(operation)
+    }
+
     setOperation(props);
+    setToBe(false);
   }
 
   function removeAllNumbers(){
@@ -33,11 +58,15 @@ export default function Home() {
 
     if (screen == ""){
       setOperation("");
+      setTempResult(0);
+      setResult(0);
     }
   }
 
   function equalsTo(){
-
+    mathsOperations(operation, tempResult, Number(screen));
+    setScreen("" + result);
+    setToBe(false);
   }
 
   return (
