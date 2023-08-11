@@ -2,7 +2,7 @@
 // import Image from 'next/image'
 import Layout from './components/layout.js'
 import Key from './components/Key.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
 
@@ -10,7 +10,7 @@ export default function Home() {
   const[operation, setOperation] = useState("");
   const[tempResult, setTempResult] = useState(0);
   const[result, setResult] = useState(0);
-  const[toBe, setToBe] = useState(true);
+  const[toBe, setToBe] = useState(false);
 
   function mathsOperations(operator, x, y){
     if (operator == "+"){
@@ -63,9 +63,13 @@ export default function Home() {
     }
   }
 
+  useEffect(() => {
+    setScreen("" + result);
+  }, [result])
+
   function equalsTo(){
     mathsOperations(operation, tempResult, Number(screen));
-    setScreen("" + result);
+    // setScreen("" + result);
     setToBe(false);
   }
 
