@@ -133,22 +133,40 @@ header{
     height: 130px;
     width: 540px;
     border-radius: 10px;
+    padding: 40px;
+
+    flex-direction: row-reverse;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
 
     @include themed(){
         background-color: t("bg-screen");
     }
 
     margin-bottom: 25px;
+
+    p{
+        font-size: 2em;
+
+        @include themed(){
+            color: t("text-upper");
+        }   
+    }
 }
 
 .keypad{
-    height: 480px;
+    height: 500px;
     width: 540px;
     border-radius: 10px;
     padding: 30px;
 
     @include themed(){
         background-color: t("bg-keypad");
+    }
+
+    &-row{
+        padding: 30px 0 30px 0;
     }
 }
 
@@ -157,27 +175,117 @@ header{
     width: 100px;
     border: none;
     border-radius: 10px;
+    font-family: $font;
+    font-size: 1.2em;
+    font-weight: 700;
 
     &-numbers{
-        font-size: 1.2em;
-        font-weight: 700;
-
         @include themed(){
             background-color: t("numberkeys-bg");
             color: t("text-first");
-            box-shadow: inset 0 -5px t("numberkeys-shadow");
+            box-shadow: inset 0 -4px t("numberkeys-shadow");
         }
 
         &:active{
             @include themed(){
                 background-color: color-mix(in hsl, t("numberkeys-bg") 85%, lightgreen);
-                box-shadow: inset 0 -3px t("numberkeys-shadow");
+                box-shadow: inset 0 -2px t("numberkeys-shadow");
             }   
         }
+    }
+
+    &-delete{
+        font-size: 0.9em;
+        @include themed(){
+            background-color: t("keys-bg");
+            color: t("text-white");
+            box-shadow: inset 0 -4px t("keys-shadow");
+        }
+
+        &:active{
+            @include themed(){
+                background-color: color-mix(in hsl, t("keys-bg") 85%, white);
+                box-shadow: inset 0 -2px t("keys-shadow");
+            }   
+        }
+    }
+
+    &-last{
+        font-size: 0.9em;
+        width: 225px;
+
+        &-reset{
+            @include themed(){
+                background-color: t("keys-bg");
+                color: t("text-white");
+                box-shadow: inset 0 -4px t("keys-shadow");
+            }
+    
+            &:active{
+                @include themed(){
+                    background-color: color-mix(in hsl, t("keys-bg") 85%, white);
+                    box-shadow: inset 0 -2px t("keys-shadow");
+                }   
+            }
+        }
+
+        &-equals{
+            @include themed(){
+                background-color: t("toggle-bg");
+                color: t("text-white");
+                box-shadow: inset 0 -4px t("toggle-shadow");
+            }
+    
+            &:active{
+                @include themed(){
+                    background-color: color-mix(in hsl, t("toggle-bg") 85%, white);
+                    box-shadow: inset 0 -2px t("toggle-shadow");
+                }   
+            }
+        }
+
     }
 }
 
 @media screen and (max-width: 609px){
+    header{
+        height: 75px;
+        width: 325px;
+    }
+
+    .screen{
+        height: 90px;
+        width: 325px;
+        padding: 30px;
+        
+        p{
+            font-size: 1em;
+        }
+    }
+
+    .keypad{
+        height: 430px;
+        width: 325px;
+        padding: 20px;
+
+        &-row{
+            padding: 15px 0 15px 0;
+        }
+    }
+
+    .keys{
+        width: 60px;
+        font-size: 1em;
+
+        &-delete{
+            font-size: 0.6em;
+        }
+
+        &-last{
+            font-size: 0.6em;
+            width: 128px;
+        }
+    }
 
 }
 

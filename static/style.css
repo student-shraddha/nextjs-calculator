@@ -152,6 +152,10 @@ header .toggle-bar-hidden {
   height: 130px;
   width: 540px;
   border-radius: 10px;
+  padding: 40px;
+  flex-direction: row-reverse;
+  overflow-x: scroll;
+  overflow-y: hidden;
   margin-bottom: 25px;
 }
 .theme--dark .screen {
@@ -163,9 +167,21 @@ header .toggle-bar-hidden {
 .theme--other .screen {
   background-color: hsl(268, 71%, 12%);
 }
+.screen p {
+  font-size: 2em;
+}
+.theme--dark .screen p {
+  color: hsl(0, 0%, 100%);
+}
+.theme--light .screen p {
+  color: hsl(60, 10%, 19%);
+}
+.theme--other .screen p {
+  color: hsl(52, 100%, 62%);
+}
 
 .keypad {
-  height: 480px;
+  height: 500px;
   width: 540px;
   border-radius: 10px;
   padding: 30px;
@@ -179,41 +195,165 @@ header .toggle-bar-hidden {
 .theme--other .keypad {
   background-color: hsl(268, 71%, 12%);
 }
+.keypad-row {
+  padding: 30px 0 30px 0;
+}
 
 .keys {
   height: 65px;
   width: 100px;
   border: none;
   border-radius: 10px;
-}
-.keys-numbers {
+  font-family: "League Spartan", sans-serif;
   font-size: 1.2em;
   font-weight: 700;
 }
 .theme--dark .keys-numbers {
   background-color: hsl(30, 25%, 89%);
   color: hsl(221, 14%, 31%);
-  box-shadow: inset 0 -5px hsl(28, 16%, 65%);
+  box-shadow: inset 0 -4px hsl(28, 16%, 65%);
 }
 .theme--light .keys-numbers {
   background-color: hsl(45, 7%, 89%);
   color: hsl(60, 10%, 19%);
-  box-shadow: inset 0 -5px hsl(35, 11%, 61%);
+  box-shadow: inset 0 -4px hsl(35, 11%, 61%);
 }
 .theme--other .keys-numbers {
   background-color: hsl(268, 47%, 21%);
   color: hsl(52, 100%, 62%);
-  box-shadow: inset 0 -5px hsl(290, 70%, 36%);
+  box-shadow: inset 0 -4px hsl(290, 70%, 36%);
 }
 .theme--dark .keys-numbers:active {
   background-color: color-mix(in hsl, hsl(30, 25%, 89%) 85%, lightgreen);
-  box-shadow: inset 0 -3px hsl(28, 16%, 65%);
+  box-shadow: inset 0 -2px hsl(28, 16%, 65%);
 }
 .theme--light .keys-numbers:active {
   background-color: color-mix(in hsl, hsl(45, 7%, 89%) 85%, lightgreen);
-  box-shadow: inset 0 -3px hsl(35, 11%, 61%);
+  box-shadow: inset 0 -2px hsl(35, 11%, 61%);
 }
 .theme--other .keys-numbers:active {
   background-color: color-mix(in hsl, hsl(268, 47%, 21%) 85%, lightgreen);
-  box-shadow: inset 0 -3px hsl(290, 70%, 36%);
+  box-shadow: inset 0 -2px hsl(290, 70%, 36%);
+}
+.keys-delete {
+  font-size: 0.9em;
+}
+.theme--dark .keys-delete {
+  background-color: hsl(225, 21%, 49%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(224, 28%, 35%);
+}
+.theme--light .keys-delete {
+  background-color: hsl(185, 42%, 37%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(185, 58%, 25%);
+}
+.theme--other .keys-delete {
+  background-color: hsl(281, 89%, 26%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(285, 91%, 52%);
+}
+.theme--dark .keys-delete:active {
+  background-color: color-mix(in hsl, hsl(225, 21%, 49%) 85%, white);
+  box-shadow: inset 0 -2px hsl(224, 28%, 35%);
+}
+.theme--light .keys-delete:active {
+  background-color: color-mix(in hsl, hsl(185, 42%, 37%) 85%, white);
+  box-shadow: inset 0 -2px hsl(185, 58%, 25%);
+}
+.theme--other .keys-delete:active {
+  background-color: color-mix(in hsl, hsl(281, 89%, 26%) 85%, white);
+  box-shadow: inset 0 -2px hsl(285, 91%, 52%);
+}
+.keys-last {
+  font-size: 0.9em;
+  width: 225px;
+}
+.theme--dark .keys-last-reset {
+  background-color: hsl(225, 21%, 49%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(224, 28%, 35%);
+}
+.theme--light .keys-last-reset {
+  background-color: hsl(185, 42%, 37%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(185, 58%, 25%);
+}
+.theme--other .keys-last-reset {
+  background-color: hsl(281, 89%, 26%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(285, 91%, 52%);
+}
+.theme--dark .keys-last-reset:active {
+  background-color: color-mix(in hsl, hsl(225, 21%, 49%) 85%, white);
+  box-shadow: inset 0 -2px hsl(224, 28%, 35%);
+}
+.theme--light .keys-last-reset:active {
+  background-color: color-mix(in hsl, hsl(185, 42%, 37%) 85%, white);
+  box-shadow: inset 0 -2px hsl(185, 58%, 25%);
+}
+.theme--other .keys-last-reset:active {
+  background-color: color-mix(in hsl, hsl(281, 89%, 26%) 85%, white);
+  box-shadow: inset 0 -2px hsl(285, 91%, 52%);
+}
+.theme--dark .keys-last-equals {
+  background-color: hsl(6, 63%, 50%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(6, 70%, 34%);
+}
+.theme--light .keys-last-equals {
+  background-color: hsl(25, 98%, 40%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(25, 99%, 27%);
+}
+.theme--other .keys-last-equals {
+  background-color: hsl(176, 100%, 44%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 -4px hsl(177, 92%, 70%);
+}
+.theme--dark .keys-last-equals:active {
+  background-color: color-mix(in hsl, hsl(6, 63%, 50%) 85%, white);
+  box-shadow: inset 0 -2px hsl(6, 70%, 34%);
+}
+.theme--light .keys-last-equals:active {
+  background-color: color-mix(in hsl, hsl(25, 98%, 40%) 85%, white);
+  box-shadow: inset 0 -2px hsl(25, 99%, 27%);
+}
+.theme--other .keys-last-equals:active {
+  background-color: color-mix(in hsl, hsl(176, 100%, 44%) 85%, white);
+  box-shadow: inset 0 -2px hsl(177, 92%, 70%);
+}
+
+@media screen and (max-width: 609px) {
+  header {
+    height: 75px;
+    width: 325px;
+  }
+  .screen {
+    height: 90px;
+    width: 325px;
+    padding: 30px;
+  }
+  .screen p {
+    font-size: 1em;
+  }
+  .keypad {
+    height: 430px;
+    width: 325px;
+    padding: 20px;
+  }
+  .keypad-row {
+    padding: 15px 0 15px 0;
+  }
+  .keys {
+    width: 60px;
+    font-size: 1em;
+  }
+  .keys-delete {
+    font-size: 0.6em;
+  }
+  .keys-last {
+    font-size: 0.6em;
+    width: 128px;
+  }
 }/*# sourceMappingURL=style.css.map */
