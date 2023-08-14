@@ -25,6 +25,8 @@ export default function Home() {
     if (operator == "/"){
       setResult(x / y);
     }
+
+    setTempResult(result);
   }
   
   function putNumbers(props){
@@ -46,7 +48,7 @@ export default function Home() {
     setTempResult(Number(screen));
 
     if (operation != ""){
-      mathsOperations(operation)
+      mathsOperations(operation, tempResult, Number(screen));
     }
 
     setOperation(props);
@@ -62,16 +64,16 @@ export default function Home() {
       setResult(0);
     }
   }
-
-  useEffect(() => {
-    setScreen("" + result);
-  }, [result])
-
+  
   function equalsTo(){
     mathsOperations(operation, tempResult, Number(screen));
     setOperation("");
     setToBe(false);
   }
+
+  useEffect(() => {
+    setScreen("" + result);
+  }, [result])
 
   return (
     <Layout>

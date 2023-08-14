@@ -18,7 +18,7 @@ export default function Layout({ children }){
             <div className={theme == "dark" ? "theme--dark" : theme == "light" ? "theme--light" : "theme--other"}>
                 <main className="flex flex-justcont-c flex-alignit-c flex-dir-col">
                     <header className="flex flex-justcont-sb">
-                        <p className="text-upper">calc</p>
+                        <p className="logo text-upper">calc</p>
                         <div className="flex flex-dir-col toggle">
                             <div className="toggle-numbers">
                                 <button onClick={() => changeTheme("dark")}>1</button>

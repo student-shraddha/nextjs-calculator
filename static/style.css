@@ -72,6 +72,9 @@ header {
 .theme--other header p {
   color: hsl(52, 100%, 62%);
 }
+header .logo {
+  padding-top: 16px;
+}
 header .toggle {
   height: -moz-fit-content;
   height: fit-content;
