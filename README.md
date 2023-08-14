@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Screenshot
 
-
+![image](https://github.com/daniel-web-developer/nextjs-calculator/assets/107224353/f373c72a-33d1-4a8e-9232-15ffc8e8341f)
 
 ### Links
 
