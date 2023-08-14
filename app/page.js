@@ -47,7 +47,7 @@ export default function Home() {
   function defineOperation(props){
     setTempResult(Number(screen));
 
-    if (operation != "" && result != ""){
+    if (operation != "" && result == ""){
       mathsOperations(operation, tempResult, Number(screen));
     }
 
