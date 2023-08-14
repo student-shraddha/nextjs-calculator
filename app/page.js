@@ -9,7 +9,7 @@ export default function Home() {
   const[screen, setScreen] = useState("");
   const[operation, setOperation] = useState("");
   const[tempResult, setTempResult] = useState(0);
-  const[result, setResult] = useState(0);
+  const[result, setResult] = useState("");
   const[toBe, setToBe] = useState(false);
 
   function mathsOperations(operator, x, y){
@@ -47,7 +47,7 @@ export default function Home() {
   function defineOperation(props){
     setTempResult(Number(screen));
 
-    if (operation != ""){
+    if (operation != "" & result != ""){
       mathsOperations(operation, tempResult, Number(screen));
     }
 
@@ -61,7 +61,7 @@ export default function Home() {
     if (screen == ""){
       setOperation("");
       setTempResult(0);
-      setResult(0);
+      setResult("");
     }
   }
   
