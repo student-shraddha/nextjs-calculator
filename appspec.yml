@@ -2,8 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/nextjs-calculator  # Change to your desired directory on the instance
-
+    destination: /home/ec2-user/nextjs-calculator 
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
