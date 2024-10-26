@@ -18,5 +18,11 @@ sudo mkdir -p $APP_DIR
 sudo chown ec2-user:ec2-user $APP_DIR
 cd $APP_DIR || exit 1
 
+# Check if package-lock.json exists and remove it
+if [ -f "package-lock.json" ]; then
+    echo "Removing existing package-lock.json"
+    rm package-lock.json
+fi
+
 # Install app dependencies
 npm install
