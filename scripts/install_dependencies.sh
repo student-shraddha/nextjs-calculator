@@ -24,8 +24,15 @@ if [ ! -f "package.json" ]; then
     exit 1
 fi
 
-# Remove package-lock.json if it exists
-[ -f "package-lock.json" ] && rm package-lock.json
+# Remove package-lock.json if it exists (force delete with sudo in case of permissions issues)
+if [ -f "package-lock.json" ]; then
+    echo "Removing existing package-lock.json..."
+    sudo rm -f package-lock.json
+    if [ -f "package-lock.json" ]; then
+        echo "Error: Failed to delete package-lock.json" >&2
+        exit 1
+    fi
+fi
 
 # Configure npm to ignore package-lock.json
 echo "Configuring npm to skip package-lock.json..."
