@@ -23,10 +23,7 @@ if [ -f "package-lock.json" ]; then
     echo "Removing existing package-lock.json"
     rm package-lock.json
 fi
-if [ -d node_modules ]; then
-    echo "Removing existing node_modules directory"
-    rm -rf node_modules
-fi
+
 
 # Install dependencies
 echo "Installing npm dependencies..."
