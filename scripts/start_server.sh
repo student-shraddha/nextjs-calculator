@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set the application directory
+# Update this path to the correct one for your application
 APP_DIR="/home/ec2-user/nextjs-calculator"
 
 # Ensure the application directory exists
@@ -10,13 +10,19 @@ if [ ! -d "$APP_DIR" ]; then
     sudo chown ec2-user:ec2-user "$APP_DIR"  # Set ownership to ec2-user
 fi
 
-# Change to the application directory
 cd "$APP_DIR" || { echo "Failed to change to $APP_DIR"; exit 1; }
 
 # Check for package.json file
-if [ ! -f "package.json" ]; then
+if [ ! -f "$APP_DIR/package.json" ]; then
     echo "Error: package.json not found in $APP_DIR"
     exit 1
+fi
+
+# Install Node.js and npm if not already installed
+if ! command -v npm &> /dev/null; then
+    echo "Installing Node.js and npm..."
+    curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
+    sudo yum install -y nodejs
 fi
 
 # Install dependencies
