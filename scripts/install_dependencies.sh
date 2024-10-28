@@ -1,28 +1,28 @@
 #!/bin/bash
 
-# Update the package list and install dependencies on Amazon Linux
+APP_DIR="/home/ec2-user/nextjs-calculator"
+
+# Update packages and install dependencies
 sudo yum update -y
 sudo yum install -y ruby wget
 
-# Install Node.js and npm (specific setup for Amazon Linux)
+# Install Node.js and npm
 curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
 sudo yum install -y nodejs
 
-# Install PM2 globally to manage the Next.js application process
+# Install PM2 globally
 sudo npm install -g pm2
 
-# Set up application directory and navigate to it
-APP_DIR="/home/ec2-user/nextjs-calculator"
+# Create app directory if it doesn't exist
 sudo mkdir -p "$APP_DIR"
 sudo chown ec2-user:ec2-user "$APP_DIR"
 cd "$APP_DIR" || exit 1
 
-# Check if package-lock.json exists and remove it
-if [ -f "package-lock.json" ]; then
-    echo "Removing existing package-lock.json"
-    rm package-lock.json
+# Check if package.json exists before running npm install
+if [ -f "package.json" ]; then
+    echo "Installing npm dependencies..."
+    npm install
+else
+    echo "Error: package.json not found in $APP_DIR" >&2
+    exit 1
 fi
-
-# Install dependencies
-echo "Installing npm dependencies..."
-npm install
