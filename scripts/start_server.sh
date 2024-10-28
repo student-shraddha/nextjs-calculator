@@ -40,6 +40,7 @@ if ! command -v pm2 &> /dev/null; then
 fi
 
 # Start the application with PM2
+pm2 delete all
 pm2 start npm --name "nextjs-calculator" -- start || { echo "PM2 failed to start the application"; exit 1; }
 pm2 save
 pm2 startup || { echo "PM2 startup command failed"; exit 1; }
