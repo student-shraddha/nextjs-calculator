@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 # Update the package list and install dependencies on Amazon Linux
 sudo yum update -y
