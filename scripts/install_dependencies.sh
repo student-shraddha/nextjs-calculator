@@ -27,6 +27,13 @@ fi
 # Remove package-lock.json if it exists
 [ -f "package-lock.json" ] && rm package-lock.json
 
+# Configure npm to ignore package-lock.json
+echo "Configuring npm to skip package-lock.json..."
+npm config set package-lock false
+
 # Install dependencies
 echo "Installing npm dependencies..."
 npm install || { echo "npm install failed"; exit 1; }
+
+# Optional: Reset npm configuration to allow package-lock.json if needed for future sessions
+npm config set package-lock true
