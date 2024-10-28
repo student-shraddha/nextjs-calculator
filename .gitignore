@@ -34,5 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 #lockignore
-package-lock.json
 git rm --cached package-lock.json
+git commit -m "Ignore package-lock.json from deployments"
+git push origin main
