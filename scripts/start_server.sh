@@ -29,6 +29,10 @@ fi
 echo "Installing npm dependencies..."
 npm install || { echo "npm install failed"; exit 1; }
 
+# Build the Next.js application
+echo "Building the Next.js application..."
+npm run build || { echo "Build failed"; exit 1; }
+
 # Ensure PM2 is installed and available
 if ! command -v pm2 &> /dev/null; then
     echo "PM2 is not installed. Installing PM2 globally..."
