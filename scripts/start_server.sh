@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Update this path to the correct one for your application
+# Correct the path for your application
 APP_DIR="/home/ec2-user/nextjs-calculator"
 
 # Ensure the application directory exists
@@ -22,7 +22,7 @@ fi
 if ! command -v npm &> /dev/null; then
     echo "Installing Node.js and npm..."
     curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
-    sudo yum install -y nodejs
+    sudo yum install -y nodejs || { echo "Node.js installation failed"; exit 1; }
 fi
 
 # Install dependencies
