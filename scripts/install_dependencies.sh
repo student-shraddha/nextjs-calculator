@@ -15,7 +15,7 @@ sudo npm install -g pm2
 
 # Ensure application directory exists
 sudo mkdir -p "$APP_DIR"
-sudo chown ec2-user:ec2-user "$APP_DIR"
+sudo chown -R ec2-user:ec2-user "$APP_DIR"
 cd "$APP_DIR" || { echo "Failed to change to $APP_DIR directory"; exit 1; }
 
 # Check if package.json exists before running npm install
@@ -24,17 +24,14 @@ if [ ! -f "package.json" ]; then
     exit 1
 fi
 
-# Remove package-lock.json if it exists (force delete with sudo in case of permissions issues)
-if [ -f "package-lock.json" ]; then
-    echo "Removing existing package-lock.json..."
+# Force-remove package-lock.json multiple times to ensure it's gone
+echo "Removing any existing package-lock.json..."
+while [ -f "package-lock.json" ]; do
     sudo rm -f package-lock.json
-    if [ -f "package-lock.json" ]; then
-        echo "Error: Failed to delete package-lock.json" >&2
-        exit 1
-    fi
-fi
+    sleep 1  # short delay to ensure sync completion
+done
 
-# Configure npm to ignore package-lock.json
+# Set npm to not create a package-lock.json file
 echo "Configuring npm to skip package-lock.json..."
 npm config set package-lock false
 
