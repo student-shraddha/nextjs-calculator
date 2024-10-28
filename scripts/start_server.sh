@@ -1,6 +1,6 @@
 #!/bin/bash
 # Navigate to the app directory
-cd /home/ubuntu/nextjs-calculator
+cd /home/ec2-user/nextjs-calculator
 
 # Build the Next.js app
 npm run build
