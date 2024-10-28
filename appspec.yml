@@ -4,10 +4,11 @@ files:
   - source: /
     destination: /home/ec2-user/nextjs-calculator
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies.sh
+  AfterInstall:
+    - location: scripts/remove_package_lock.sh
       timeout: 300
       runas: ec2-user
+
 
 
   ApplicationStop:
