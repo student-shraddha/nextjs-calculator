@@ -1,10 +1,35 @@
 #!/bin/bash
-# Navigate to the app directory
-cd /home/ec2-user/nextjs-calculator
 
-# Build the Next.js app
-npm run build
+# Set the application directory
+APP_DIR="/home/ec2-user/nextjs-calculator"
 
-# Start the Next.js app using PM2
-pm2 start npm --name "nextjs-calculator" -- start
+# Ensure the application directory exists
+if [ ! -d "$APP_DIR" ]; then
+    echo "Application directory $APP_DIR does not exist. Creating it now."
+    sudo mkdir -p "$APP_DIR"
+    sudo chown ec2-user:ec2-user "$APP_DIR"  # Set ownership to ec2-user
+fi
+
+# Change to the application directory
+cd "$APP_DIR" || { echo "Failed to change to $APP_DIR"; exit 1; }
+
+# Check for package.json file
+if [ ! -f "package.json" ]; then
+    echo "Error: package.json not found in $APP_DIR"
+    exit 1
+fi
+
+# Install dependencies
+echo "Installing npm dependencies..."
+npm install || { echo "npm install failed"; exit 1; }
+
+# Ensure PM2 is installed and available
+if ! command -v pm2 &> /dev/null; then
+    echo "PM2 is not installed. Installing PM2 globally..."
+    sudo npm install -g pm2 || { echo "PM2 installation failed"; exit 1; }
+fi
+
+# Start the application with PM2
+pm2 start npm --name "nextjs-calculator" -- start || { echo "PM2 failed to start the application"; exit 1; }
 pm2 save
+pm2 startup || { echo "PM2 startup command failed"; exit 1; }
