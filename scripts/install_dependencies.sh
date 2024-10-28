@@ -13,9 +13,9 @@ sudo npm install -g pm2
 
 # Set up application directory and navigate to it
 APP_DIR="/home/ec2-user/nextjs-calculator"
-sudo mkdir -p $APP_DIR
-sudo chown ec2-user:ec2-user $APP_DIR
-cd $APP_DIR || exit 1
+sudo mkdir -p "$APP_DIR"
+sudo chown ec2-user:ec2-user "$APP_DIR"
+cd "$APP_DIR" || exit 1
 
 # Check if package-lock.json exists and remove it
 if [ -f "package-lock.json" ]; then
@@ -23,9 +23,6 @@ if [ -f "package-lock.json" ]; then
     rm package-lock.json
 fi
 
-
 # Install dependencies
 echo "Installing npm dependencies..."
-
-# Install app dependencies
 npm install
