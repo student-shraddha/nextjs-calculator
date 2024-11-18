@@ -1,7 +1,13 @@
 service: nextjs-calculator
-provider:
-  name: aws
-  runtime: nodejs18.x
-  region: ca-central-1
+
+frameworkVersion: '3'
+
+custom:
+  nextConfigDir: ./  # Path to your Next.js configuration
+  
 plugins:
-  - serverless-nextjs-plugin
+  - serverless-next.js
+
+functions:
+  app:
+    handler: handler.next
