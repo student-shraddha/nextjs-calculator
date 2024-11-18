@@ -4,10 +4,10 @@ frameworkVersion: '3'
 
 custom:
   nextConfigDir: ./  # Path to your Next.js configuration
-  
+
 plugins:
   - serverless-next.js
 
 functions:
   app:
-    handler: handler.next
+    handler: handler.handler  # Points to the handler function in handler.js
