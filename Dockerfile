@@ -1,5 +1,6 @@
-# Stage 1: Build the Next.js app
-FROM node:18 AS builder
+
+# Use official Node.js image as a base
+FROM node:18
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -10,28 +11,19 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application to the container
+# Copy the rest of the application
 COPY . .
 
 # Build the Next.js app for production
 RUN npm run build
 
-# Stage 2: Serve with NGINX
-FROM nginx:alpine
+# Expose the app on port 3000
+EXPOSE 3000
 
-# Set the working directory for NGINX
-WORKDIR /usr/share/nginx/html
-
-# Copy the built Next.js app from the builder stage
-COPY --from=builder /app/.next ./next
-COPY --from=builder /app/public ./public
-
-# Copy custom NGINX configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose the container on port 80
-EXPOSE 80
-
-# Start NGINX server
-CMD ["nginx", "-g", "daemon off;"]
+# Start the Next.js app in production mode
+CMD ["npm", "start"]
+RUN npm i -g pm2
+RUN pm2 start "npm start" --name "new"
+RUN pm2 startup 
+RUN pm2 save
 
