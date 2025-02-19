@@ -1,13 +1,26 @@
 service: nextjs-calculator
 
-frameworkVersion: '3'
-
-custom:
-  nextConfigDir: ./  # Path to your Next.js configuration
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 800
+  timeout: 30
+  region: ca-central-1
+  environment:
+    NODE_ENV: production
 
 plugins:
-  - serverless-next.js
+  - serverless-nextjs
 
 functions:
-  app:
-    handler: handler.handler  # Points to the handler function in handler.js
+  nextjs-app:
+    handler: .serverless_nextjs/index.handler
+    events:
+      - httpApi: '*'
+
+custom:
+  serverless-nextjs:
+    memory: 800
+    timeout: 30
+    name: nextjs-calculator
+    bucketName: nextjs-calculator-deployment
