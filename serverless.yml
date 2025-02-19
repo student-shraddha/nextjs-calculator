@@ -14,7 +14,7 @@ plugins:
 
 functions:
   nextjs-app:
-    handler: .serverless_nextjs/index.handler
+    handler: handler.handler
     events:
       - httpApi: '*'
 
