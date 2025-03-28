@@ -1,20 +1,17 @@
-version: '3.8'
-
+version: "3.8"
 services:
   nextjs-app:
-    image: my-nextjs-app:latest
-    build: .
+    image: shraddha2566/nextjs-calculator:latest  # Make sure this matches your Docker Hub repo
     ports:
       - "3000:3000"
     deploy:
       replicas: 2
       restart_policy:
-        condition: on-failure
-      placement:
-        max_replicas_per_node: 1  # Ensures at least one replica per node
+        condition: any
     networks:
       - nextjs-net
 
 networks:
   nextjs-net:
     driver: overlay
+
