@@ -7,14 +7,11 @@ services:
     ports:
       - "3000:3000"
     deploy:
-      replicas: 3
+      replicas: 2
       restart_policy:
         condition: on-failure
-      update_config:
-        parallelism: 2
-        delay: 10s
-      rollback_config:
-        parallelism: 1
+      placement:
+        max_replicas_per_node: 1  # Ensures at least one replica per node
     networks:
       - nextjs-net
 
