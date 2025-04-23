@@ -11,18 +11,16 @@ jobs:
       - run:
           name: Deploy to EC2
           command: |
-            mkdir deploy-package
-            rsync -av --progress . ./deploy-package --exclude deploy-package
-            scp -o StrictHostKeyChecking=no -r deploy-package/* ubuntu@35.183.24.169:~/app
+            tar --exclude='./deploy-package' -czf deploy.tar.gz .
+            scp -o StrictHostKeyChecking=no deploy.tar.gz ubuntu@35.183.24.169:~/app
             ssh -o StrictHostKeyChecking=no ubuntu@35.183.24.169 "
               cd ~/app &&
+              tar -xzf deploy.tar.gz &&
+              rm deploy.tar.gz &&
               npm install --production &&
               pm2 restart all || pm2 start npm --name 'next-calculator' -- start
             "
 
 workflows:
-  version: 2
-  deploy_flow:
-    jobs:
-      - deploy
+  version:
 
