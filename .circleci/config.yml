@@ -8,15 +8,13 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run build
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:isv/P1T2LL7DmZUdm1PCORLZSQv82nnf4larIwmiPLE"  # ← Your actual fingerprint
       - run:
           name: Deploy to EC2
           command: |
-            scp -o StrictHostKeyChecking=no -i ~/.ssh/shill -r . ubuntu@35.183.24.169:~/app
-            ssh -o StrictHostKeyChecking=no -i ~/.ssh/shill ubuntu@35.183.24.169 \
+            scp -o StrictHostKeyChecking=no -r ./ ubuntu@35.183.24.169:~/app
+            ssh -o StrictHostKeyChecking=no ubuntu@35.183.24.169 \
               "cd ~/app && npm install --production && (pm2 restart all || pm2 start npm --name 'next-app' -- start)"
-            
-workflows:
-  version: 2
-  deploy_flow:
-    jobs:
-      - deploy
+
