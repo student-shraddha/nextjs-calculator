@@ -10,7 +10,7 @@ jobs:
       - run: npm run build
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:isv/P1T2LL7DmZUdm1PCORLZSQv82nnf4larIwmiPLE"  # ← Your actual fingerprint
+            - "SHA256:isv/P1T2LL7DmZUdm1PCORLZSQv82nnf4larIwmiPLE"  # Replace with your fingerprint
       - run:
           name: Deploy to EC2
           command: |
@@ -18,3 +18,8 @@ jobs:
             ssh -o StrictHostKeyChecking=no ubuntu@35.183.24.169 \
               "cd ~/app && npm install --production && (pm2 restart all || pm2 start npm --name 'next-app' -- start)"
 
+workflows:
+  version: 2
+  deploy_flow:
+    jobs:
+      - deploy
