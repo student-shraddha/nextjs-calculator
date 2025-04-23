@@ -11,7 +11,9 @@ jobs:
       - run:
           name: Deploy to EC2
           command: |
-            scp -o StrictHostKeyChecking=no -r ./ ubuntu@35.183.24.169:~/app
+            mkdir deploy-package
+            cp -r * deploy-package
+            scp -o StrictHostKeyChecking=no -r deploy-package/* ubuntu@35.183.24.169:~/app
             ssh -o StrictHostKeyChecking=no ubuntu@35.183.24.169 "
               cd ~/app &&
               npm install --production &&
@@ -23,3 +25,4 @@ workflows:
   deploy_flow:
     jobs:
       - deploy
+
