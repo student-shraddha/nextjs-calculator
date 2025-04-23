@@ -12,7 +12,7 @@ jobs:
           name: Deploy to EC2
           command: |
             mkdir deploy-package
-            cp -r * deploy-package
+            rsync -av --progress . ./deploy-package --exclude deploy-package
             scp -o StrictHostKeyChecking=no -r deploy-package/* ubuntu@35.183.24.169:~/app
             ssh -o StrictHostKeyChecking=no ubuntu@35.183.24.169 "
               cd ~/app &&
