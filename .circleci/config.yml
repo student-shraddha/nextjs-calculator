@@ -10,8 +10,8 @@ jobs:
       - run:
           name: Deploy to EC2
           command: |
-            scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r . ubuntu@<EC2-IP>:~/app
-            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@<EC2-IP> << 'EOF'
+            scp -o StrictHostKeyChecking=no -i ~/.ssh/shill -r . ubuntu@35.183.24.169:3000
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/shill ubuntu@35.183.24.169 << 'EOF'
               cd ~/app
               npm install --production
               pm2 restart all || pm2 start npm --name "next-app" -- start
