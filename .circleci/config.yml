@@ -11,8 +11,9 @@ jobs:
       - run:
           name: Deploy to EC2
           command: |
-            tar --exclude='./deploy-package' -czf deploy.tar.gz .
-            scp -o StrictHostKeyChecking=no deploy.tar.gz ubuntu@35.183.24.169:~/app
+            mkdir output
+            tar --exclude='./output' -czf output/deploy.tar.gz .
+            scp -o StrictHostKeyChecking=no output/deploy.tar.gz ubuntu@35.183.24.169:~/app
             ssh -o StrictHostKeyChecking=no ubuntu@35.183.24.169 "
               cd ~/app &&
               tar -xzf deploy.tar.gz &&
@@ -25,4 +26,3 @@ workflows:
   deploy_flow:
     jobs:
       - deploy
-
