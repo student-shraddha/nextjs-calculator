@@ -22,5 +22,7 @@ jobs:
             "
 
 workflows:
-  version:
+  deploy_flow:
+    jobs:
+      - deploy
 
