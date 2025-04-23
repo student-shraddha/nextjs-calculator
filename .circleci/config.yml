@@ -12,15 +12,11 @@ jobs:
           name: Deploy to EC2
           command: |
             scp -o StrictHostKeyChecking=no -i ~/.ssh/shill -r . ubuntu@35.183.24.169:~/app
-            ssh -o StrictHostKeyChecking=no -i ~/.ssh/shill ubuntu@35.183.24.169 \\\\<< 'EOF'
-              cd ~/app
-              npm install --production
-              pm2 restart all || pm2 start npm --name "next-app" -- start
-            EOF
-
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/shill ubuntu@35.183.24.169 \
+              "cd ~/app && npm install --production && (pm2 restart all || pm2 start npm --name 'next-app' -- start)"
+            
 workflows:
   version: 2
   deploy_flow:
     jobs:
       - deploy
-
