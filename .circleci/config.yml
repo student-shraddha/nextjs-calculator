@@ -1,0 +1,24 @@
+version: 2.1
+jobs:
+  deploy:
+    docker:
+      - image: cimg/node:18.16
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run build
+      - run:
+          name: Deploy to EC2
+          command: |
+            scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r . ubuntu@<EC2-IP>:~/app
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@<EC2-IP> << 'EOF'
+              cd ~/app
+              npm install --production
+              pm2 restart all || pm2 start npm --name "next-app" -- start
+            EOF
+
+workflows:
+  version: 2
+  deploy_flow:
+    jobs:
+      - deploy
