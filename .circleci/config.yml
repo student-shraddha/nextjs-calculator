@@ -1,4 +1,5 @@
 version: 2.1
+
 jobs:
   deploy:
     docker:
@@ -10,8 +11,8 @@ jobs:
       - run:
           name: Deploy to EC2
           command: |
-            scp -o StrictHostKeyChecking=no -i ~/.ssh/shill -r . ubuntu@35.183.24.169:3000
-            ssh -o StrictHostKeyChecking=no -i ~/.ssh/shill ubuntu@35.183.24.169 << 'EOF'
+            scp -o StrictHostKeyChecking=no -i ~/.ssh/shill -r . ubuntu@35.183.24.169:~/app
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/shill ubuntu@35.183.24.169 \\<< 'EOF'
               cd ~/app
               npm install --production
               pm2 restart all || pm2 start npm --name "next-app" -- start
@@ -22,3 +23,4 @@ workflows:
   deploy_flow:
     jobs:
       - deploy
+
