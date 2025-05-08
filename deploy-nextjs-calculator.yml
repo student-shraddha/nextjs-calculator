@@ -1,0 +1,66 @@
+- name: CI/CD pipeline for Next.js Calculator
+  hosts: webservers
+  become: yes
+
+  vars:
+    app_dir: /var/www/nextjs-calculator
+    repo_url: https://github.com/student-shraddha/nextjs-calculator.git
+
+  tasks:
+
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - curl
+          - git
+          - build-essential
+        state: present
+
+    - name: Install Node.js (LTS)
+      shell: |
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+        apt-get install -y nodejs
+      args:
+        executable: /bin/bash
+
+    - name: Ensure pm2 is installed globally
+      npm:
+        name: pm2
+        global: yes
+
+    - name: Clone Next.js Calculator repo
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        version: main
+        force: yes
+
+    - name: Install Node dependencies
+      npm:
+        path: "{{ app_dir }}"
+        state: present
+
+    - name: Build Next.js project
+      shell: npm run build
+      args:
+        chdir: "{{ app_dir }}"
+
+    - name: Stop any previous pm2 app
+      shell: pm2 delete nextjs-calculator || true
+
+    - name: Start app with pm2
+      shell: pm2 start npm --name nextjs-calculator -- start
+      args:
+        chdir: "{{ app_dir }}"
+
+    - name: Save pm2 process list (auto restart on reboot)
+      shell: pm2 save
+
+    - name: Enable pm2 startup script
+      shell: |
+        pm2 startup systemd -u {{ ansible_user }} --hp /home/{{ ansible_user }}
+      when: ansible_user != 'root'
