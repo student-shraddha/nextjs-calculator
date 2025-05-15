@@ -36,7 +36,7 @@
       git:
         repo: "{{ repo_url }}"
         dest: "{{ app_dir }}"
-        version: main
+        version: master
         force: yes
 
     - name: Install Node dependencies
