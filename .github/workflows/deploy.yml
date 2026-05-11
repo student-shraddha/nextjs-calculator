@@ -1,4 +1,4 @@
-name: Deploy Node App
+name: Deploy Next.js App
 
 on:
   push:
@@ -30,4 +30,6 @@ jobs:
 
             npm run build
 
-            pm2 restart new
+            pm2 delete new || true
+
+            pm2 start npm --name "new" -- start
